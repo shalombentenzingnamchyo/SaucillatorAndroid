@@ -46,9 +46,8 @@ public class SauceView extends View {
     }
     private void init() {
       ViewService.setup(this);
-
-      gridPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-      gridPaint.setARGB(25, 255, 255, 255);
+      gridPaint.setStyle(Paint.Style.STROKE);
+      gridPaint.setStrokeWidth(3);//this makes the line a bit more wide
     }
 
     @Override
@@ -120,11 +119,14 @@ public class SauceView extends View {
       }
 
       if (showGrid) {
+        int color=0xff6fc2e8;//this gives blue green red variation
         int width = canvas.getWidth();
         int height = canvas.getHeight();
         int rowDelta = height / SauceEngine.TRACKPAD_GRID_SIZE;
         for (int i = 0; i < SauceEngine.TRACKPAD_GRID_SIZE; i++) {
           int y = rowDelta * i;
+          gridPaint.setColor(color);
+          color+=0x0700f3;
           canvas.drawLine(0, y, width, y, gridPaint);
         }
       }
